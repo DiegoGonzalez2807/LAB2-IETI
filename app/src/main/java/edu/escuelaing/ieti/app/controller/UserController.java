@@ -16,7 +16,7 @@ import edu.escuelaing.ieti.app.dto.UserDto;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/API/mongodb/users")
 public class UserController {
     //Conexion con userService
     private final UserService userService;
@@ -27,7 +27,8 @@ public class UserController {
      * Constructor generado para dar valor a la variable userService
      * @param userService
      */
-    public UserController(@Autowired UserService userService){
+    @Autowired
+    public UserController(UserService userService){
         this.userService = userService;
     }
 
@@ -115,4 +116,35 @@ public class UserController {
         return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
     }
  }
-}
+
+    @GetMapping("/findUser/{name}/{lastName}")
+    public ResponseEntity<List<UserDto>> findUserLastNameLike(@PathVariable String name, String lastName){
+        try{
+            List<User> users = userService.findUsersWithNameOrLastNameLike(name,lastName);
+            List<UserDto> usersConvert = new ArrayList<>();
+            for(User user: users){
+                usersConvert.add(modelMapper.map(user, UserDto.class));
+            }
+            return new ResponseEntity<>(usersConvert, HttpStatus.ACCEPTED);
+        }
+        catch(Exception ex){
+            return new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/findUser/{date}")
+    public ResponseEntity<List<UserDto>> findUsersCreatedAfter(@PathVariable String date){
+        try{
+            List<User> users = userService.findUsersCreatedAfter(date);
+            List<UserDto> usersConvert = new ArrayList<>();
+            for(User user: users){
+                usersConvert.add(modelMapper.map(user, UserDto.class));
+            }
+            return new ResponseEntity<>(usersConvert, HttpStatus.ACCEPTED);
+        }
+        catch(Exception ex){
+            return new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+}   

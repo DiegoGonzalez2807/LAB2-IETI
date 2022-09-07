@@ -1,5 +1,6 @@
 package edu.escuelaing.ieti.app.service.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,7 +11,7 @@ import edu.escuelaing.ieti.app.entities.User;
 import edu.escuelaing.ieti.app.persistence.UserServicePersistenceException;
 import edu.escuelaing.ieti.app.service.UserService;
 
-@Service
+//@Service
 public class UserServiceHashMap  implements UserService{
 
     //Estructura Hashmap para usuarios
@@ -58,13 +59,14 @@ public class UserServiceHashMap  implements UserService{
      */
     @Override
     public void deleteById(String id) throws UserServicePersistenceException {
+   
         if(users.containsKey(id)){
             users.remove(id);
         }
         else{
             throw new UserServicePersistenceException(UserServicePersistenceException.PROHIBIDO);
         }
-        
+       
     }
 
     /**
@@ -77,5 +79,18 @@ public class UserServiceHashMap  implements UserService{
         }
         return users.replace(userId, user);
     }
-    
+
+    @Override
+    public List<User> findUsersWithNameOrLastNameLike(String name, String lastName) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<User> findUsersCreatedAfter(String startDate) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package edu.escuelaing.ieti.app.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import edu.escuelaing.ieti.app.entities.User;
@@ -16,4 +17,8 @@ public interface UserService
     void deleteById( String id ) throws UserServicePersistenceException;
 
     User update( User user, String userId ) throws UserServicePersistenceException;
+
+    List<User> findUsersWithNameOrLastNameLike(String name, String lastName);
+
+    List<User> findUsersCreatedAfter(String startDate);
 }  
