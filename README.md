@@ -48,6 +48,10 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
         }
     ```
 8. Run your project and verify that the connection is successful.
+
+#### Verificacion de conexión a cluster en Atlas MongoDB
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/connection.png)
+
 9. To avoid future problems connecting to your Atlas instance (because of ip whitelist) find the way to allow connections from any Ip (not recommended for real-world applications)
 
 ### Part 3: Implementing the MongoDB Service
@@ -142,6 +146,32 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
 6. Remove the *@Service* annotation from the *UserServiceHashMap* and add it to the *UserServiceMongoDB*.
 7. Test your API and verify that your data is stored in your cluster.
 
+### Pruebas MONGODB en usuarios
+### Insercion de Usuario
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/create.png)
+
+### Traer todos los usuarios (Contexto: Se crea otro usuario para ver de mejor manera la correcta ejecución)
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/all1.png)
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/all2.png)
+
+### Encontrar usuario por identificador (ID)
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/id.png)
+
+### Actualización de usuario
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/update.png)
+#### Se realiza una búsqueda de todos los usuarios para ver si se actualizó de manera correcta el usuario
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/update2.png)
+
+### Eliminación de usuario
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/delete1.png)
+#### Se realiza una búsqueda de todos los usuarios para ver si se eliminó de manera correcta el usuario
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/delete2.png)
+#### Se revisa la eliminación del usuario en el cluster de Atlas
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/delete3.png)
+
+
+
+
 ### Challenge Yourself: Implement complex queries using the Spring Data Query Methods
 1. Modify the *UserService* interface adding the following methods:
     ```java
@@ -153,7 +183,14 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
  
 2.  Add those 2 new mapping methods on the controller.
 3. Test your API, verify that queries work. 
-   
+
+### Pruebas QUERY retos
+#### Buscar usuario si su nombre o apellido es igual a:
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/query1.png)
+
+#### Buscar usuario creado despues de una fecha especifica
+![](https://github.com/DiegoGonzalez2807/LAB2-IETI/blob/master/img/query2.png)
+
 ***Tip***: take a look at the official documentation and learn how to create custom queries with [Spring Data](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation)
 
     
