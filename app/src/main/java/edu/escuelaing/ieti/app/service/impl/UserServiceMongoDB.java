@@ -57,7 +57,7 @@ import edu.escuelaing.ieti.app.service.UserService;
 
     @Override
     public List<User> findUsersCreatedAfter(String startDate) {
-        return userRepository.findByCreatedAtAfter(startDate);
+        return userRepository.findByCreatedAtGreaterThan(startDate);
     }
 
 	
